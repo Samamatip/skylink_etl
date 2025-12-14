@@ -1,0 +1,15 @@
+pandas
+sqlalchemy
+python-dotenv
+streamlit
+plotly
+requests
+psycopg2
+pyarrow
+datetime
+plotly
+os
+dotenv
+urllib
+pathlib
+traceback

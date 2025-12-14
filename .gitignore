@@ -1,0 +1,5 @@
+env/
+data
+.env
+.ipynb
+test_db.py
