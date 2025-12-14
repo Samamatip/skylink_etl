@@ -1,7 +1,7 @@
 
 # Skylink ETL & Dashboard
 
-Skylink ETL is a small data engineering + analytics project that ingests partner usage data from multiple raw sources, transforms it into a clean analytical dataset, loads it into a local database or files, and presents an interactive Streamlit dashboard. It includes a manual upload flow so non-technical users can drop new raw files and trigger the ETL from the UI.
+Skylink ETL is a small data engineering + analytics project that ingests partner usage data from multiple raw sources, transforms it into a clean analytical dataset, loads it into a database or files, and presents an interactive Streamlit dashboard. It includes a manual upload flow so non-technical users can drop new raw files and trigger the ETL from the UI.
 
 **Key Features**
 - End‑to‑end ETL: `extract` → `transform` → `load` orchestrated by `etl/pipeline.py`.
@@ -167,3 +167,5 @@ git config core.autocrlf input
 
 This project is intended for educational and internal use. No explicit license is set.
 # skylink_etl
+
+last updated by 

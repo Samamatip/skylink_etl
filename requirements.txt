@@ -6,10 +6,3 @@ plotly
 requests
 psycopg2
 pyarrow
-datetime
-plotly
-os
-dotenv
-urllib
-pathlib
-traceback
