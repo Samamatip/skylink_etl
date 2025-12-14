@@ -42,9 +42,10 @@ def handle_manual_upload() -> None:
                 "Please upload all three required files: sessions.json, raw_usage_2025_01.csv, partner_roaming.xlsx"
             )
         elif (required_files.issubset(set(uploaded_names))):
+            # Avoid showing a persistent success banner before processing
             set_message(
-                "success",
-                "All required files uploaded successfully!"
+                "info",
+                "All required files selected. Click the ETL button to process."
             )
 
             # ETL Pipeline Trigger button
