@@ -168,4 +168,5 @@ git config core.autocrlf input
 This project is intended for educational and internal use. No explicit license is set.
 # skylink_etl
 
-last updated by 
+last updated by https://github.com/Samamatip
+@Olusola Samson
