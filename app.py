@@ -14,13 +14,18 @@ st.set_page_config(page_title="Skylink Usage Dashboard", layout="wide", page_ico
 def get_db_connection():
     return make_sqlalchemy_db_connection()
 
-@st.cache_data(ttl=600) # Cache data for 10 minutes
 def load_daily_usage(_connection, start_date, end_date=None):
     query = """
         SELECT * FROM public."USAGE"
         WHERE "timestamp"::date BETWEEN %(start_date)s AND %(end_date)s;
     """
-    return pd.read_sql_query(query, _connection, params={"start_date": start_date, "end_date": end_date or start_date})
+    try:
+        @st.cache_data(ttl=600)  # Cache the query result for 10 minutes
+        def fetch_data(_connection, query, start_date, end_date):
+            return pd.read_sql_query(query, _connection, params={"start_date": start_date, "end_date": end_date or start_date})
+        return fetch_data(_connection, query, start_date, end_date)
+    except Exception as e:
+        return pd.DataFrame()  # Return empty DataFrame on error
 
 db_connection = get_db_connection()
 
@@ -115,7 +120,19 @@ fig_top_users = px.bar(
     color_continuous_scale='Blues'
 )
 fig_top_users.update_traces(texttemplate='%{text:.1f}', textposition='outside')
-fig_top_users.update_layout(showlegend=False, xaxis_title="MSISDN", yaxis_title="Usage (MB)")
+fig_top_users.update_layout(
+    showlegend=False, 
+    xaxis_title="MSISDN", 
+    yaxis_title="Usage (MB)",
+    xaxis=dict(
+        tickangle=-60,
+        type='category',
+        categoryorder='array',
+        categoryarray=top_users['MSISDN']
+    ),
+    height=500,
+    bargap=0.1
+)
 st.plotly_chart(fig_top_users, use_container_width=True)
 
 st.markdown("---")
