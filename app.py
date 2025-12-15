@@ -58,7 +58,7 @@ end_date_input = st.sidebar.date_input("End Date", value=start_date_input).strft
 daily_usage = load_daily_usage(db_connection, start_date_input, end_date_input)
 
 if daily_usage.empty:
-    st.warning(f"No data available for {date_today}")
+    st.warning(f"No data available for the selected date range: {start_date_input} to {end_date_input}" if end_date_input != start_date_input else f"No data available for: {start_date_input}")
     st.stop()
 
 # Convert timestamp to datetime if needed
